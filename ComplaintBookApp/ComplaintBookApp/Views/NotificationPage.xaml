@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.NotificationPage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp"
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+
+            <Label
+				FontSize="Medium"  
+                Grid.Row="1"
+				HorizontalOptions="CenterAndExpand"
+				IsVisible="{Binding IsStatusVisible}"
+				Text="No Record Found"
+				TextColor="#981C1C"
+				VerticalOptions="CenterAndExpand" />
+            
+            <StackLayout Grid.Row="2">
+                <Controls:InfiniteListView
+                x:Name="listViewNotifications"    
+                IsVisible="{Binding !IsStatusVisible}"
+                BackgroundColor="White"               
+                HorizontalOptions="FillAndExpand"               
+                ItemsSource="{Binding NotificationData, Mode=TwoWay}"               
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                VerticalOptions="FillAndExpand">
+                    <Controls:InfiniteListView.Footer>
+                        <Label />
+                    </Controls:InfiniteListView.Footer>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0,0,0,5">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.NotificationTapCommand, Source={x:Reference listViewNotifications}}" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Notification Info-->
+                                    <Label
+                                            Grid.Row="0"                                            
+                                            Margin="10,0,0,0"
+                                            FontSize="Small"
+                                            HeightRequest="40"                                             
+                                            HorizontalOptions="Start"
+                                            Text="{Binding NotificationInfo}"
+                                            TextColor="#981C1C"
+                                            VerticalOptions="Center"/>
+
+                                    <BoxView
+                                        Grid.Row="1"                                                                              
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        BackgroundColor="Black" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </Controls:InfiniteListView>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

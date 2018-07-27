@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.RegisterPage"
+             xmlns:local="clr-namespace:ComplaintBookApp.Comman;assembly=ComplaintBookApp"
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             xmlns:effects="clr-namespace:ComplaintBookApp.Effects;assembly=ComplaintBookApp"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp" 
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+            <Grid Grid.Row="1" Margin="10,0,10,0"
+		            HorizontalOptions="Fill"
+		            VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <Image
+			Grid.Row="0"
+			HorizontalOptions="Center"
+			Source="logo"
+			VerticalOptions="End" />
+
+                <ScrollView Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height=".5*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".5*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height=".1*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0"
+			            HorizontalOptions="Fill"
+			            Orientation="Vertical"
+			            Spacing="10"
+			            VerticalOptions="Center">
+                            <!--First name-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="First Name" />-->
+                            <Entry 
+                                Placeholder="First Name"
+                        Style="{StaticResource GeneralTxtStyle}"
+                        Text="{Binding FirstName}"/>
+
+                            <!--Last name-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Last Name" />-->
+                            <Entry    
+                                Placeholder="Last Name"
+                        Style="{StaticResource GeneralTxtStyle}"
+                        Text="{Binding LastName}"/>
+
+                            <!--email-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Email" />-->
+                            <Entry       
+                                Placeholder="Email"
+                        Style="{StaticResource GeneralTxtStyle}"
+                        Keyboard="Email"
+                        Text="{Binding Email}"/>
+
+                            <!--Password-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Password" />-->
+                            <Entry		
+                                  Placeholder="Password"
+				        IsPassword="True"				        
+				        Style="{StaticResource GeneralTxtStyle}"
+				        Text="{Binding Password}">
+                                <Entry.Effects>
+                                    <effects:ShowHidePassEffect />
+                                </Entry.Effects>
+                            </Entry>
+
+                            <!--Gender-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Gender" />-->
+                            <Controls:BindablePicker                            
+                            PlaceholderColor="Gray"
+                            Title="Select Gender"
+                            TextColor="White"
+                            BackgroundColor="#981C1C"                        
+                            HeightRequest="40"
+                            ItemsSource="{Binding Genders}"
+                            SelectedItem="{Binding SelectedGender , Mode=TwoWay}"/>
+                                                                                    
+                            <!--State-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="State" />-->
+                            <Controls:BindablePicker
+                                x:Name="StatePicker"
+                            Title="Select State"
+                            PlaceholderColor="Gray"
+                            TextColor="White"                                    
+                            BackgroundColor="#981C1C"  
+                            SelectedIndexChanged="BindablePicker_SelectedIndexChanged"
+                            HeightRequest="40"
+                            ItemsSource="{Binding State}"
+                            SelectedItem="{Binding SelectedState , Mode=TwoWay}"/>
+
+                            <!--City-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="City" />-->
+                            <Controls:BindablePicker
+                                x:Name="CityPicker"
+                            Title="Select City"
+                                IsEnabled="False"
+                            PlaceholderColor="Gray"
+                            BackgroundColor="#981C1C" 
+                            TextColor="White"
+                            HeightRequest="40"
+                            ItemsSource="{Binding City}"
+                            SelectedItem="{Binding SelectedCity , Mode=TwoWay}"/>
+
+                            <!--MobileNumber-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Mobile Number" />-->
+
+                            <Entry  Style="{StaticResource GeneralTxtStyle}" Keyboard="Telephone" Placeholder="Mobile Number" Text="{Binding MobileNumber}">
+                                <Entry.Behaviors>
+                                    <Controls:MaxLengthValidatorBehavior  MaxLength="10"/>
+                                    <Controls:NumberValidationBehavior />
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <!--Address-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Address" />-->
+                            <!--<Editor Style="{StaticResource GeneralTxtStyle}" Focused="Editor_Focused" Unfocused="Editor_Unfocused" x:Name="AddressEditor" HeightRequest="100" Text="{Binding Address}}" Keyboard="Default"/>-->
+                            <Controls:PlaceholderEditor 
+                                Style="{StaticResource GeneralTxtStyle}" 
+                                HeightRequest="100" 
+                                Text="{Binding Address , Mode=TwoWay}" Placeholder="Address" PlaceholderColor="Gray" Keyboard="Default"/>
+                            <!--Pin code-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Pin Code" />-->
+
+                            <Entry  Style="{StaticResource GeneralTxtStyle}" Placeholder="Pin Code" Keyboard="Telephone" Text="{Binding PinCode}">
+                                <Entry.Behaviors>
+                                    <Controls:MaxLengthValidatorBehavior  MaxLength="6"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+
+                        <Button	Grid.Row="2"	Margin="10,0,10,0"		
+				Style="{StaticResource GeneralButtonStyle}"
+                    Command="{Binding RegistrationCommand}"
+				Text="REGISTER" />
+
+                        <Label	Grid.Row="4"		
+			            HorizontalOptions="Center"
+			            Style="{StaticResource GeneralLabelStyle}"
+			            Text="Oops, I already have an account!"
+			            VerticalOptions="Start">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </ScrollView>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

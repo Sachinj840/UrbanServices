@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.BookServiceComplaintPage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp"
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+                <Grid Grid.Row="1" Margin="10,0,10,0"
+		            HorizontalOptions="Fill"
+		            VerticalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height=".1*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0"
+			            HorizontalOptions="Fill"
+			            Orientation="Vertical"
+			            Spacing="10"
+			            VerticalOptions="Center">
+
+                            <!--Product name-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Product Name" />-->
+                            <Entry 
+                                Placeholder="Product Name"
+                        Style="{StaticResource GeneralTxtStyle}"                                
+                                TextColor="White"
+                                InputTransparent="True"
+                        Text="{Binding ProductName}"/>
+
+                            <!--<Controls:PlaceholderEditor 
+                                Style="{StaticResource GeneralTxtStyle}" 
+                                HeightRequest="100" 
+                                Text="{Binding ProductDescription , Mode=TwoWay}" Placeholder="Product Description" PlaceholderColor="Gray" Keyboard="Default"/>-->
+
+                            <!--Catagory-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Catagory" />-->
+                            <Controls:BindablePicker
+                            PlaceholderColor="Gray"
+                            Title="Select Catagory"
+                                InputTransparent="True"
+                            TextColor="White"
+                            BackgroundColor="#981C1C"                         
+                            HeightRequest="40"
+                            ItemsSource="{Binding Catagory}"
+                            SelectedItem="{Binding SelectedCatagory , Mode=TwoWay}"/>
+
+                            <Entry
+                            x:Name="DateOfBirthEntry" 
+                            Focused="OnDateOfBirthFocused"
+                            HeightRequest="40"
+                            IsVisible="{Binding IsComplaintDateEntryVisible, Mode=TwoWay}"
+                            Placeholder="Complaint Date"
+                            TextColor="White"
+                            Style="{StaticResource GeneralTxtStyle}" />
+                            <DatePicker
+                            x:Name="DOBDatePicker"
+                            BackgroundColor="#981C1C"
+                            TextColor="White"
+                            Date="{Binding ComplaintDate, Mode=TwoWay}"                        
+                            Format="MMMM dd, yyyy"
+                            HeightRequest="40"
+                            IsVisible="{Binding IsComplaintDatePickerVisible, Mode=TwoWay}"/>
+
+                            <!--Complaint-->
+                            <!--<Label Style="{StaticResource FormLabelStyle}"  Text="Complaint" />-->
+                            <Controls:PlaceholderEditor Style="{StaticResource GeneralTxtStyle}" HeightRequest="150" Text="{Binding Complaint}}" Placeholder="Enter Complaint" PlaceholderColor="Gray" Keyboard="Default"/>
+
+                            <Button	
+				            Style="{StaticResource GeneralButtonStyle}"
+                            Command="{Binding RegisterCommand}"
+				            Text="REGISTER COMPLAINT" />
+                        </StackLayout>
+
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

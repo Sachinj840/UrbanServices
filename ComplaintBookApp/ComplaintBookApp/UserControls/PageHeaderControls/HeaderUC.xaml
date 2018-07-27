@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.UserControls.PageHeaderControls.HeaderUC"
+             xmlns:effects="clr-namespace:ComplaintBookApp.Effects;assembly=ComplaintBookApp">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!--  Top Header Style  -->
+            <Style x:Key="lblTopHeader" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <!--<Setter Property="FontSize" Value="Large" />-->
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Font" Value="Medium" />
+            </Style>
+            <Style x:Key="lblsubTopHeader" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <!--<Setter Property="FontSize" Value="Small" />-->
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Font" Value="Small" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Effects>
+        <effects:TopBarMarginEffect />
+    </ContentView.Effects>
+    <Grid
+        BackgroundColor="#981C1C"
+        ColumnSpacing="0"
+        HorizontalOptions="FillAndExpand"
+        RowSpacing="0"
+        VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <StackLayout
+            Grid.Row="0"
+            Orientation="Vertical"
+            Spacing="0"
+            VerticalOptions="Center">
+            <Label
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource lblTopHeader}"
+                Text="{Binding Path=PageHeaderText, Mode=TwoWay}" />
+            <Label
+                Margin="0,-3,0,0"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource lblsubTopHeader}"
+                Text="{Binding Path=PageSubHeaderText, Mode=TwoWay}" />
+        </StackLayout>
+        <StackLayout
+            Grid.Row="0"
+            Margin="5,5,0,0"
+            Orientation="Horizontal">
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="30"
+                IsVisible="{Binding IsBackButtonVisible, Mode=TwoWay}"
+                Source="arrowLeftWhite"
+                VerticalOptions="Center"
+                WidthRequest="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="30"    
+                IsVisible="{Binding IsMenuVisible, Mode=TwoWay}"
+                Source="Menu_button"
+                VerticalOptions="Center"
+                WidthRequest="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMenuTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </Grid>
+</ContentView>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.MainAdminHomePage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp"
+             xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <!--<RowDefinition Height="1*"/>-->
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+                
+                <Grid Grid.Row="1">
+                    <Button Margin="15,0,15,10" Text="MAIN BANNER UPLOAD" Command="{Binding MainBannerUploadCommand}" Style="{StaticResource GeneralButtonStyle}"/>
+                </Grid>
+
+                <!--<Grid Grid.Row="2">
+                    <Button Margin="15,0,15,10" Text="SUB BANNER ONE UPLOAD" Command="{Binding SubBannerOneUploadCommand}" Style="{StaticResource GeneralButtonStyle}"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Button Margin="15,0,15,10" Text="SUB BANNER TWO UPLOAD" Command="{Binding SubBannerTwoUploadCommand}" Style="{StaticResource GeneralButtonStyle}"/>
+                </Grid>-->
+
+                <Grid Grid.Row="2">
+                    <Button Margin="15,0,15,10" Text="APPROVE SERVICE COMPLAINT" Command="{Binding ApproveServiceCommand}" Style="{StaticResource GeneralButtonStyle}"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Button Margin="15,0,15,10" Text="CHECK SERVICE STATUS" Command="{Binding IconPressedCommand}" CommandParameter="CheckApprovedServiceStatusListPage" Style="{StaticResource GeneralButtonStyle}"/>
+                </Grid>
+                
+                <Grid Grid.Row="4">
+                    <Button Margin="15,0,15,10" Text="USER INFORMATION" Command="{Binding UserInfoCommand}" Style="{StaticResource GeneralButtonStyle}"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.HomePage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp" 
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+
+            <Image
+			Grid.Row="1"
+			HorizontalOptions="Center"
+			Source="logo"
+            HeightRequest="160"
+            WidthRequest="160"
+            Margin="15,0,15,0"
+			VerticalOptions="Center" />
+            <Label Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,200,0,0" TextColor="#981C1C" Text="Always With You..." FontAttributes="Bold" FontSize="Medium"/>
+            
+            <Grid Grid.Row="3">
+                <Button Margin="15,0,15,10" Text="REGISTER" Command="{Binding RegisterCommand}" Style="{StaticResource GeneralButtonStyle}"/>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Button Margin="15,0,15,10" Text="LOGIN" Command="{Binding LoginCommand}" Style="{StaticResource GeneralButtonStyle}" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

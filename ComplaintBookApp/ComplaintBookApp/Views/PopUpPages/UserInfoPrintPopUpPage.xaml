@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.PopUpPages.UserInfoPrintPopUpPage"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"             
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+                PositionIn="Bottom"
+                PositionOut="Center"
+                ScaleIn="1"
+                ScaleOut="0.7"
+                DurationIn="700"
+                EasingIn="BounceOut"/>
+    </pages:PopupPage.Animation>
+    <ScrollView
+      HorizontalOptions="Center"
+      VerticalOptions="Center">
+
+        <Frame
+            x:Name="FrameContainer"
+            Margin="10"
+            BackgroundColor="White"
+            HeightRequest="500"
+            HorizontalOptions="Center"
+            WidthRequest="250">
+            <StackLayout
+            IsClippedToBounds="True"
+            Padding="15, 5"
+            Spacing="3">
+
+                <Button Text="Close" HorizontalOptions="CenterAndExpand" 
+                        VerticalOptions="CenterAndExpand" Style="{StaticResource GeneralButtonStyle}" 
+                        Clicked="OnClose"></Button>
+            </StackLayout>
+        </Frame>
+    </ScrollView>
+</pages:PopupPage>

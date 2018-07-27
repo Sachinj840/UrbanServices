@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.OTPVerificationPage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp" 
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <Grid 
+		HorizontalOptions="Fill"
+		VerticalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+
+            <Label Grid.Row="1" Text="Enter verification code here" FontSize="Medium" FontAttributes="Bold" TextColor="#981C1C" HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center" VerticalOptions="End"/>
+            
+            <StackLayout Margin="40,0,40,0"
+			Grid.Row="2"
+			HorizontalOptions="Fill"
+			Orientation="Vertical"
+			Spacing="10"
+			VerticalOptions="Center">
+
+                <Entry
+				x:Name="txtlogin"
+                Keyboard="Telephone"
+				Placeholder="Enter verification code"
+				Style="{StaticResource GeneralTxtStyle}"
+				Text="{Binding VerificationCode}" >
+                    <Entry.Behaviors>
+                        <Controls:MaxLengthValidatorBehavior  MaxLength="6"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Button				
+				Style="{StaticResource GeneralButtonStyle}"
+				Text="SUBMIT" 
+                Command="{Binding SubmitCommand}"/>
+
+            </StackLayout>
+            <StackLayout Margin="40,0,40,0"
+			Grid.Row="3"
+			HorizontalOptions="Fill"
+			VerticalOptions="Start">
+                <Label
+				FontSize="Medium"
+                    FontAttributes="Bold"
+				HorizontalOptions="Center"
+				Text="RESEND OTP"
+				TextColor="#981C1C"
+				VerticalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ResendOTPCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            <StackLayout Margin="40,0,40,0"
+			Grid.Row="4"
+			HorizontalOptions="Fill"
+			VerticalOptions="Start">
+                <Label
+				FontSize="Medium"
+                    FontAttributes="Bold"
+				HorizontalOptions="Center"
+				Text="GO TO HOME PAGE"
+				TextColor="#981C1C"
+				VerticalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToHomeCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

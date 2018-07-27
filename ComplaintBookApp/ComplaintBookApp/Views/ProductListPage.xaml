@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.ProductListPage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp" 
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+
+            <StackLayout Grid.Row="1">
+                <Controls:InfiniteListView
+                x:Name="listViewProducts"                
+                BackgroundColor="White"               
+                HorizontalOptions="FillAndExpand"               
+                ItemsSource="{Binding ProductData, Mode=TwoWay}"               
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                VerticalOptions="FillAndExpand">
+                    <Controls:InfiniteListView.Footer>
+                        <Label />
+                    </Controls:InfiniteListView.Footer>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0,0,0,5">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ProductTapCommand, Source={x:Reference listViewProducts}}" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Image
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="10,0,0,0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="40"
+                                            WidthRequest="40">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding ProductImage}" />
+                                        </Image.Source>
+                                    </Image>
+                                    <!-- Product name-->
+                                    <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            FontSize="Large"
+                                            FontAttributes="Bold"
+                                            HeightRequest="40"                                             
+                                            HorizontalOptions="Start"
+                                            Text="{Binding ProductName}"
+                                            TextColor="#981C1C"
+                                            VerticalOptions="Center"/>
+
+                                    <BoxView
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"                                        
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        BackgroundColor="Black" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </Controls:InfiniteListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

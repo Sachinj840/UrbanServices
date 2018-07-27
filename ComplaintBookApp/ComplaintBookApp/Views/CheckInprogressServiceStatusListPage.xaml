@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.CheckInprogressServiceStatusListPage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp"
+             xmlns:UCM="clr-namespace:ComplaintBookApp.UserControls.MenuTabbedControls;assembly=ComplaintBookApp"
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+            <ScrollView
+			x:Name="TickListsScrollViewer"
+			Grid.Row="1"
+			Margin="0,0"
+			HeightRequest="40"
+			Orientation="Horizontal">
+                <UCM:HeaderMenuControl
+				BindingContext="{Binding .}"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="FillAndExpand" />
+            </ScrollView>
+            <StackLayout Grid.Row="2" Margin="5,0">
+                <Grid
+            x:Name="sends_layout"
+            Grid.Row="1"
+            Margin="5,15,5,0"
+            ColumnSpacing="0"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="DATE"
+                    VerticalOptions="StartAndExpand" />
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="SUMMARY"
+                    VerticalOptions="StartAndExpand" />
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="SERVICE"
+                    VerticalOptions="StartAndExpand" />
+                        <Label
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="CATAGORY"
+                    VerticalOptions="StartAndExpand" />
+                    </Grid>
+                    <BoxView
+                Grid.Row="1"
+                BackgroundColor="#676767"
+                HeightRequest="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center" />
+                    <Label
+				FontSize="Medium"               
+				HorizontalOptions="CenterAndExpand"
+				IsVisible="{Binding IsStatusVisible}"
+				Text="No Record Found"
+                        Grid.Row="2"
+				TextColor="#981C1C"
+				VerticalOptions="CenterAndExpand" />
+                    <StackLayout Grid.Row="3">
+                        <Controls:InfiniteListView
+                x:Name="listViewServiceComplaint"                
+                BackgroundColor="White"               
+                HorizontalOptions="FillAndExpand" 
+                IsVisible="{Binding !IsStatusVisible}"
+                ItemsSource="{Binding ServiceComplaintList, Mode=TwoWay}"               
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                VerticalOptions="FillAndExpand">
+                            <Controls:InfiniteListView.Footer>
+                                <Label />
+                            </Controls:InfiniteListView.Footer>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+
+                                        <Grid
+                            x:Name="gridBase"
+                            BackgroundColor="White"
+                            RowSpacing="0"
+                                        Padding="0,0,0,5">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ProductTapCommand, Source={x:Reference listViewServiceComplaint}}" CommandParameter="{Binding .}" />
+                                            </Grid.GestureRecognizers>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40" />
+                                                <RowDefinition Height="1" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                        Grid.Row="0"
+                                Grid.Column="0"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding ComplaintDate}"
+                                VerticalTextAlignment="Center" />
+                                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding ComplaintSummary}"
+                                VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding ProductName}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                            <Label
+                                Grid.Row="0"
+                                Grid.Column="3"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding Catagory}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center"  LineBreakMode="TailTruncation"/>
+
+                                            <BoxView
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="4"                                        
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        BackgroundColor="#676767" />
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </Controls:InfiniteListView>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

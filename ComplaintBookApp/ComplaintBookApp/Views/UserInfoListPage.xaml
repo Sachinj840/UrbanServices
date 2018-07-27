@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.UserInfoListPage"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp"
+             xmlns:Controls="clr-namespace:ComplaintBookApp.UserControls.CustomControls;assembly=ComplaintBookApp"
+             Style="{DynamicResource AppBackgroundColor}">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+            <StackLayout Grid.Row="1">
+            <Grid
+            x:Name="sends_layout"           
+            Margin="5,2,5,0"           
+            HorizontalOptions="FillAndExpand"         
+            VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <!--<RowDefinition Height="1" />-->
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!--<BoxView
+                Grid.Row="0"
+                BackgroundColor="#676767"
+                HeightRequest="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center" />-->
+                <Grid Grid.Row="0" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width=".5*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="FIRSTNAME"
+                    VerticalOptions="StartAndExpand" />
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="LASTNAME"
+                    VerticalOptions="StartAndExpand" />
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="GENDER"
+                    VerticalOptions="StartAndExpand" />
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text="MOBILENO"
+                    VerticalOptions="StartAndExpand" />
+                    <Label
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource ListHeaderStyle}"
+                    Text=""
+                    VerticalOptions="StartAndExpand" />
+                </Grid>
+                <BoxView
+                Grid.Row="1"
+                BackgroundColor="#676767"
+                HeightRequest="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center" />
+                <Label
+				FontSize="Medium"                
+				HorizontalOptions="CenterAndExpand"	
+                        IsVisible="{Binding IsStatusVisible}"
+				Text="No Record Found"
+                        Grid.Row="2"
+				TextColor="#981C1C"
+				VerticalOptions="CenterAndExpand" />
+
+                <!--<StackLayout Grid.Row="3">-->
+                <Controls:InfiniteListView
+                x:Name="listView"         
+                            Grid.Row="3"
+                BackgroundColor="White"               
+                HorizontalOptions="FillAndExpand"                 
+                ItemsSource="{Binding UserDataList}"
+                IsVisible="{Binding !IsStatusVisible}"
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                VerticalOptions="FillAndExpand">
+                    <Controls:InfiniteListView.Footer>
+                        <Label />
+                    </Controls:InfiniteListView.Footer>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid
+                            Padding="0,0,0,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width=".5*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                Grid.Column="0"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding FirstName}"
+                                VerticalTextAlignment="Center" />
+                                    <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding LastName}"
+                                VerticalTextAlignment="Center" />
+                                    <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding Gender}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                                    <Label
+                                Grid.Row="0"
+                                Grid.Column="3"
+                               
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource ListItemStyle}"
+                                Text="{Binding MobileNo}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                                    <Image
+                                    Grid.Row="0"
+                                    Grid.Column="4"
+                                   HorizontalOptions="Center"
+                                    Aspect="AspectFit"
+                                    HeightRequest="70"
+                                    Source="download"
+                                    WidthRequest="70">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.DownloadCommand, Source={x:Reference listView}}" CommandParameter="{Binding UserID}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                    <BoxView
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="5"                                        
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="End"
+                                        BackgroundColor="#676767" />
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </Controls:InfiniteListView>
+                <!--</StackLayout>-->
+            </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

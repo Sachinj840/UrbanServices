@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.App">
+	<Application.Resources>
+        <ResourceDictionary>
+            <!-- Application resource dictionary #981C1C-->
+            <Style x:Key="AppBackgroundColor" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            <Style x:Key="GeneralButtonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#981C1C" />
+                <Setter Property="BorderRadius" Value="0" />
+            </Style>
+
+            <Style x:Key="GeneralTxtStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="#981C1C" />
+                <Setter Property="PlaceholderColor" Value="#A9A9A9" />
+                <Setter Property="HeightRequest" Value="40" />
+            </Style>
+
+            <Style x:Key="GeneralLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#981C1C" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style x:Key="FormLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#981C1C" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            
+            <Style x:Key="DrawerBackgroundColor" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+
+            <Style x:Key="ListHeaderStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#981C1C" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="ListItemStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#981C1C" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComplaintBookApp.Views.LoginPage"             
+             xmlns:effects="clr-namespace:ComplaintBookApp.Effects;assembly=ComplaintBookApp"
+             xmlns:UCH="clr-namespace:ComplaintBookApp.UserControls.PageHeaderControls;assembly=ComplaintBookApp" 
+             Style="{DynamicResource AppBackgroundColor}">
+    <ContentPage.Content>
+       <Grid 
+		HorizontalOptions="Fill"
+		VerticalOptions="Fill">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <UCH:HeaderUC
+                    Grid.Row="0"            
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Start" />
+            
+            <Image
+			Grid.Row="1"
+			HorizontalOptions="Center"
+			Source="logo"
+			VerticalOptions="End" />
+            <StackLayout Margin="40,0,40,0"
+			Grid.Row="2"
+			HorizontalOptions="Fill"
+			Orientation="Vertical"
+			Spacing="10"
+			VerticalOptions="Center">
+                <Entry
+				x:Name="txtlogin"
+                Keyboard="Email"
+				Placeholder="Email"
+				Style="{StaticResource GeneralTxtStyle}"
+				Text="{Binding Email}" />
+                <Entry
+				x:Name="txtPassWord"
+				IsPassword="True"
+				Placeholder="Password"
+				Style="{StaticResource GeneralTxtStyle}"
+				Text="{Binding Password}">
+                    <Entry.Effects>
+                        <effects:ShowHidePassEffect />
+                    </Entry.Effects>
+                </Entry>
+                <Button				
+				Style="{StaticResource GeneralButtonStyle}"
+				Text="LOGIN" 
+                Command="{Binding LoginCommand}"/>
+
+            </StackLayout>
+            <StackLayout Margin="40,0,40,0"
+			Grid.Row="3"
+			HorizontalOptions="Fill"
+			VerticalOptions="Start">
+                <Label
+				FontSize="Medium"
+				HorizontalOptions="Center"
+				Text="FORGOT PASSWORD?"
+				TextColor="#981C1C"
+				VerticalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <StackLayout Margin="40,0,40,0"
+			Grid.Row="4"
+			HorizontalOptions="Center"
+			Orientation="Horizontal"
+			VerticalOptions="Start">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignUpCommand}" />
+                </StackLayout.GestureRecognizers>
+                <Label
+				HorizontalOptions="Center"
+				Style="{StaticResource GeneralLabelStyle}"
+				Text="Not a member? "
+				VerticalOptions="Center" />
+                <Label
+				HorizontalTextAlignment="Center"
+				Style="{StaticResource GeneralLabelStyle}"
+				VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+							FontAttributes="Bold"
+							FontSize="Medium"
+							ForegroundColor="#981C1C"
+							Text="Sign up" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label
+				HorizontalOptions="Center"
+				Style="{StaticResource GeneralLabelStyle}"
+				Text="today!"
+				VerticalOptions="Center" />
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
